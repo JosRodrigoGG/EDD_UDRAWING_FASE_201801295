@@ -17,10 +17,6 @@ public class Imagen {
         return tipo;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public ESTADO getEstado() {
         return estado;
     }

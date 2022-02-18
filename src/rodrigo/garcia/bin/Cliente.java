@@ -15,10 +15,6 @@ public class Cliente {
         imagenes = new Simple<>();
     }
 
-    public int getIdCliente() {
-        return idCliente;
-    }
-
     public String getNombre() {
         return nombre;
     }

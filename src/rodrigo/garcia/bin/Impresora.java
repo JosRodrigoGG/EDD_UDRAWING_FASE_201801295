@@ -31,14 +31,6 @@ public class Impresora {
         return idImpresora;
     }
 
-    public TIPO getTipo() {
-        return tipo;
-    }
-
-    public ImagenVentanilla getImagen() {
-        return imagenes.front();
-    }
-
     public ESTADO getEstado() {
         return estado;
     }
@@ -57,10 +49,6 @@ public class Impresora {
 
     public Cola<ImagenVentanilla> getPaginas() {
         return paginas;
-    }
-
-    public void setPaginas(Cola<ImagenVentanilla> paginas) {
-        this.paginas = paginas;
     }
 
     @Override

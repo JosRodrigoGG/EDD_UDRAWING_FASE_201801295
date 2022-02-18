@@ -83,19 +83,7 @@ public class Ventanilla {
         paginas.push(imagen);
     }
 
-    public ImagenVentanilla sacarImagen() {
-        return imagenes.font();
-    }
-
-    public void borrarImagen() {
-        imagenes.pop();
-    }
-
-    public void agregarPaso() {
-        pasos++;
-    }
-
-    public TIPO getTipo() {
+        public TIPO getTipo() {
         return tipo;
     }
 
@@ -105,10 +93,6 @@ public class Ventanilla {
 
     public Pila<ImagenVentanilla> getPaginas() {
         return paginas;
-    }
-
-    public void setPaginas(Pila<ImagenVentanilla> paginas) {
-        this.paginas = paginas;
     }
 
     @Override

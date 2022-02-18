@@ -9,11 +9,6 @@ public class Busqueda {
         this.cantidad = cantidad;
     }
 
-    public Busqueda() {
-        nombre = null;
-        cantidad = 0;
-    }
-
     public String getNombre() {
         return nombre;
     }

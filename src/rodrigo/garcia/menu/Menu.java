@@ -195,16 +195,6 @@ public class Menu {
         System.out.print(">/ ");
     }
 
-    public static void archivoDOT() {
-        System.out.println("");
-        System.out.println("ARCHIVO DOT CREADO");
-    }
-
-    public static void archivoPNG() {
-        System.out.println("");
-        System.out.println("IMAGEN CREADA");
-    }
-
     public static void errorVentanilla() {
         borrarLineas();
         System.out.println("");
