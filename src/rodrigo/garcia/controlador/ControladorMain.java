@@ -13,6 +13,7 @@ import rodrigo.garcia.estructura.nodo.NodoDoble;
 import rodrigo.garcia.menu.Menu;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Random;
 
 import static rodrigo.garcia.bin.TIPO.IMG_BW;
@@ -104,26 +105,34 @@ public class ControladorMain {
                                         ruta = "C:\\Users\\josro\\Downloads\\generated.json";
                                         if (new File(ruta).exists()) {
                                             if (extensionArchivo(ruta).toLowerCase().equals("json")) {
-                                                JSONParser parser = new JSONParser();
-                                                try (Reader reader = new FileReader(ruta)) {
-                                                    Object object = parser.parse(reader);
-                                                    JSONArray jsonArray = (JSONArray) object;
-                                                    for (Object temp : jsonArray) {
-                                                        JSONObject jsonObject = (JSONObject) temp;
-                                                        Cliente cliente = new Cliente(
-                                                                idCliente++,
-                                                                (String) jsonObject.get("nombre_cliente")
-                                                        );
-                                                        for (int i = 0; i < Integer.parseInt(jsonObject.get("img_color").toString()); i++) {
-                                                            cliente.agregarImagen(new Imagen(TIPO.IMG_COLOR, idImagen++));
+                                                try {
+                                                    FileReader reader = new FileReader(ruta);
+                                                    JSONParser jsonParser = new JSONParser();
+                                                    JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+                                                    boolean bandera = true;
+                                                    int contador = 1;
+                                                    while (bandera) {
+                                                        bandera = false;
+                                                        if (jsonObject.get("Cliente" + contador) != null) {
+                                                            JSONObject jsonObject2 = new JSONObject((Map) jsonObject.get("Cliente" + contador));
+                                                            idCliente = Integer.parseInt(jsonObject2.get("id_cliente").toString());
+                                                            Cliente cliente = new Cliente(
+                                                                    (Integer) Integer.parseInt(jsonObject2.get("id_cliente").toString()),
+                                                                    (String) jsonObject2.get("nombre_cliente").toString()
+                                                            );
+                                                            for (int i = 0; i < Integer.parseInt(jsonObject2.get("img_color").toString()); i++) {
+                                                                cliente.agregarImagen(new Imagen(TIPO.IMG_COLOR, idImagen++));
+                                                            }
+                                                            for (int i = 0; i < Integer.parseInt(jsonObject2.get("img_bw").toString()); i++) {
+                                                                cliente.agregarImagen(new Imagen(IMG_BW, idImagen++));
+                                                            }
+                                                            if (cliente.getImagenes().tamanio() != 0) {
+                                                                recepcion.push(cliente);
+                                                            }
+                                                            cargados.push(cliente);
+                                                            bandera = true;
+                                                            contador++;
                                                         }
-                                                        for (int i = 0; i < Integer.parseInt(jsonObject.get("img_bw").toString()); i++) {
-                                                            cliente.agregarImagen(new Imagen(IMG_BW, idImagen++));
-                                                        }
-                                                        if (cliente.getImagenes().tamanio() != 0) {
-                                                            recepcion.push(cliente);
-                                                        }
-                                                        cargados.push(cliente);
                                                     }
                                                     for (int i = 0; i < random.nextInt(4); i++) {
                                                         Cliente cliente = new Cliente(
@@ -538,7 +547,6 @@ public class ControladorMain {
                                             bandera = false;
                                             NodoCola<Busqueda> aux = busqueda.getLista();
                                             while (aux.getSiguiente() != null) {
-                                                System.out.println(aux.getDato().getCantidad() + " " + aux.getSiguiente().getDato().getCantidad());
                                                 if (aux.getDato().getCantidad() < aux.getSiguiente().getDato().getCantidad()) {
                                                     String tNombre = aux.getDato().getNombre();
                                                     int tCantidad = aux.getDato().getCantidad();
@@ -567,6 +575,9 @@ public class ControladorMain {
                                             String nombre = "TOP 5 CON MAS COLOR";
                                             crearDOT(nombre, contenido);
                                             graphiz(RUTA_ESCRITORIO + "\\" + nombre + ".dot", nombre);
+                                            Menu.estructuraGenerada("TOP 5 COM MAS COLOR");
+                                            System.out.println("");
+                                            System.out.print(">/ ");
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -578,7 +589,6 @@ public class ControladorMain {
                                             bandera = false;
                                             NodoCola<Busqueda> aux = busqueda.getLista();
                                             while (aux.getSiguiente() != null) {
-                                                System.out.println(aux.getDato().getCantidad() + " " + aux.getSiguiente().getDato().getCantidad());
                                                 if (aux.getDato().getCantidad() > aux.getSiguiente().getDato().getCantidad()) {
                                                     String tNombre = aux.getDato().getNombre();
                                                     int tCantidad = aux.getDato().getCantidad();
@@ -590,6 +600,16 @@ public class ControladorMain {
                                                     break;
                                                 }
                                                 aux = aux.getSiguiente();
+                                            }
+                                        }
+                                        bandera = true;
+                                        while (bandera) {
+                                            bandera = false;
+                                            if (busqueda.front().getCantidad() == 0) {
+                                                if (busqueda.tamanio() > 5) {
+                                                    bandera = true;
+                                                    busqueda.pop();
+                                                }
                                             }
                                         }
                                         Simple<Busqueda> temp = null;
@@ -607,18 +627,20 @@ public class ControladorMain {
                                             String nombre = "TOP 5 CON MENOS BLANCO Y NEGRO";
                                             crearDOT(nombre, contenido);
                                             graphiz(RUTA_ESCRITORIO + "\\" + nombre + ".dot", nombre);
+                                            Menu.estructuraGenerada("TOP 5 COM MENOS BLANCO Y NEGRO");
+                                            System.out.println("");
+                                            System.out.print(">/ ");
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
                                     }
                                     case 3 -> {
-                                        Simple<Busqueda> busqueda = ordenarClienteFinal(1);
+                                        Simple<Busqueda> busqueda = ordenarClienteFinal(3);
                                         boolean bandera = true;
                                         while (bandera) {
                                             bandera = false;
                                             NodoCola<Busqueda> aux = busqueda.getLista();
                                             while (aux.getSiguiente() != null) {
-                                                System.out.println(aux.getDato().getCantidad() + " " + aux.getSiguiente().getDato().getCantidad());
                                                 if (aux.getDato().getCantidad() < aux.getSiguiente().getDato().getCantidad()) {
                                                     String tNombre = aux.getDato().getNombre();
                                                     int tCantidad = aux.getDato().getCantidad();
@@ -1026,11 +1048,9 @@ public class ControladorMain {
             NodoCola<Busqueda> aux = datos.getLista();
             while (aux != null) {
                 if (aux != null) {
-                    if (aux.getDato().getCantidad() != 0) {
-                        lista += "\tnode [shape = doublecircle label=\"" + aux.getDato().getNombre() + " (" + aux.getDato().getCantidad() + ")\"]; " + contador + ";\n";
-                        contador++;
-                        aux = aux.getSiguiente();
-                    }
+                    lista += "\tnode [shape = doublecircle label=\"" + aux.getDato().getNombre() + " (" + aux.getDato().getCantidad() + ")\"]; " + contador + ";\n";
+                    contador++;
+                    aux = aux.getSiguiente();
                 }
             }
             lista += "\tnode [shape = doublecircle label=\"NULL\"]; " + contador + ";\n";

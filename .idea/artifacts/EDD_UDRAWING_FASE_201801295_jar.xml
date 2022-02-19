@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EDD_UDRAWING_FASE_201801295:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EDD_UDRAWING_FASE_201801295_jar</output-path>
+    <root id="archive" name="EDD_UDRAWING_FASE_201801295.jar">
+      <element id="module-output" name="EDD_UDRAWING_FASE_201801295" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/barcodes-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/forms-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/io-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/kernel-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/layout-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/pdfa-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/pdftest-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/sign-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/styled-xml-parser-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/iText7-Core-7.1.4/svg-7.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-simple-1.1.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
