@@ -102,7 +102,7 @@ public class ControladorMain {
                                     case 1 -> {
                                         Menu.cargarClientes();
                                         String ruta = dato.dato_string();
-                                        ruta = "C:\\Users\\josro\\Downloads\\generated.json";
+                                        //ruta = "C:\\Users\\josro\\Downloads\\generated.json";
                                         if (new File(ruta).exists()) {
                                             if (extensionArchivo(ruta).toLowerCase().equals("json")) {
                                                 try {
@@ -838,7 +838,7 @@ public class ControladorMain {
         return null;
     }
 
-    private String graficarCOLOR(Cola<ImagenVentanilla> datos) {
+    private String graficarCOLOR(Cola< ImagenVentanilla> datos) {
         if (!datos.vacia()) {
             int contador = 0;
             String lista = "digraph Cola {\n";
